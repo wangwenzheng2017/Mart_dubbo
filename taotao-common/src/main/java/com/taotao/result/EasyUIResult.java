@@ -6,7 +6,7 @@ import java.util.List;
 public class EasyUIResult implements Serializable {
 
 	/**
-	 * 
+	 * 11111
 	 */
 	private static final long serialVersionUID = -287596517774651742L;
 
