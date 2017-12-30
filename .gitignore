@@ -1,3 +1,5 @@
 /fastdfsClient/
 .class
 /target/
+.project
+/.settings/
