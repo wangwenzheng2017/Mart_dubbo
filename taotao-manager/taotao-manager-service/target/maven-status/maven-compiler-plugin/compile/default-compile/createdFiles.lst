@@ -1,2 +1,8 @@
 com\taotao\service\impl\ItemCatServiceImpl.class
 com\taotao\service\impl\ItemServiceImpl.class
+com\taotao\service\impl\MyMessageListener.class
+com\taotao\redis\client\JedisClientCluster.class
+com\taotao\redis\client\JedisClient.class
+com\taotao\service\impl\ItemServiceImpl$1.class
+com\taotao\redis\client\JedisClientPool.class
+com\taotao\service\listener\ItemChangeListener.class

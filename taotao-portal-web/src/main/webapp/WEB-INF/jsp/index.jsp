@@ -53,7 +53,7 @@
     	{"srcB":"http://image.taotao.com/images/2015/03/03/2015030304324649807137.jpg","height":240,"alt":"","width":670,"src":"http://image.taotao.com/images/2015/03/03/2015030304324649807137.jpg","widthB":550,"href":"http://sale.jd.com/act/eDpBF1s8KcTOYM.html?cpdad=1DLSUE","heightB":240}]; */
 	var data = ${ad1};
 
-	alert(data);
+	/* alert(data); */
     cfg.DATA_MSlide = data;
     // 初始化一个广告信息
     if ( cfg.DATA_MSlide.length > 1 ) {

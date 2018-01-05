@@ -7,4 +7,6 @@ public interface UserService {
 	
 	public TaotaoResult checkData(String param, int type);
 	public TaotaoResult createUser(TbUser user);
+	public TaotaoResult login(String username,String password);
+	public TaotaoResult getUserByToken(String token);
 }

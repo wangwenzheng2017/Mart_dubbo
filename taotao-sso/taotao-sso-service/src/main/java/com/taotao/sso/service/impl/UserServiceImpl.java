@@ -2,23 +2,34 @@ package com.taotao.sso.service.impl;
 
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
+import com.alibaba.dubbo.common.logger.LoggerFactory;
 import com.alibaba.dubbo.common.utils.StringUtils;
 import com.taotao.mapper.TbUserMapper;
 import com.taotao.pojo.TbUser;
 import com.taotao.pojo.TbUserExample;
 import com.taotao.pojo.TbUserExample.Criteria;
+import com.taotao.redis.client.JedisClient;
 import com.taotao.result.TaotaoResult;
 import com.taotao.sso.service.UserService;
+import com.taotao.utils.JsonUtils;
 @Service
 public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private TbUserMapper userMapper;
+	@Autowired
+	private JedisClient jedisClient;
+	@Value("${USER_INFO}")
+	private String USER_INFO;
+	@Value("${SESSION_EXPIRE}")
+	private Integer SESSION_EXPIRE;
 	
 	@Override
 	public TaotaoResult checkData(String param, int type) {
@@ -76,6 +87,43 @@ public class UserServiceImpl implements UserService {
 		userMapper.insert(user);
 		
 		return TaotaoResult.ok();
+	}
+
+	@Override
+	public TaotaoResult login(String username, String password) {
+		TbUserExample example = new TbUserExample();
+		Criteria criteria = example.createCriteria();
+		criteria.andUsernameEqualTo(username);
+		List<TbUser> list = userMapper.selectByExample(example);
+		if (list == null || list.size() == 0) {
+			return TaotaoResult.build(400, "用户名或密码错误！");
+		}	
+		TbUser user = list.get(0);
+		String passw = user.getPassword();
+		if (!passw.equals(DigestUtils.md5DigestAsHex(password.getBytes()))) {
+			return TaotaoResult.build(400, "用户名或密码错误！");
+		}
+		String token = UUID.randomUUID().toString();
+		user.setPassword(null);
+//		System.out.println("token1"+token);
+		jedisClient.set(USER_INFO+":"+token, JsonUtils.objectToJson(user));
+		jedisClient.expire(USER_INFO+":"+token, SESSION_EXPIRE);
+//		System.out.println("token2"+token);
+		return TaotaoResult.ok(token);
+	}
+
+	@Override
+	public TaotaoResult getUserByToken(String token) {
+		String json = jedisClient.get(USER_INFO+":"+token);
+		if (StringUtils.isBlank(json)) {
+			return TaotaoResult.build(400, "用户登录已到期，请重新登录！");
+				
+		}
+		jedisClient.expire(USER_INFO+":"+token, SESSION_EXPIRE);
+		TbUser user = JsonUtils.jsonToPojo(json, TbUser.class);
+		
+		return TaotaoResult.ok(user);
+		
 	}
 
 }

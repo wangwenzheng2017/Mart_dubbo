@@ -16,7 +16,6 @@ import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.core.MessageCreator;
 import org.springframework.stereotype.Service;
 
-import com.alibaba.druid.sql.ast.expr.SQLCaseExpr.Item;
 import com.alibaba.dubbo.common.utils.StringUtils;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -33,7 +32,6 @@ import com.taotao.service.ItemService;
 import com.taotao.utils.IDUtils;
 import com.taotao.utils.JsonUtils;
 
-import redis.clients.jedis.Jedis;
 
 @Service
 public class ItemServiceImpl implements ItemService {
@@ -44,7 +42,7 @@ public class ItemServiceImpl implements ItemService {
 	private TbItemDescMapper itemDescMapper;
 	@Autowired
 	private JmsTemplate jmsTemplate;
-	@Resource
+	@Resource(name="itemAddtopic")
 	private Destination topicDestination;
 	@Autowired
 	private JedisClient jedisClient;

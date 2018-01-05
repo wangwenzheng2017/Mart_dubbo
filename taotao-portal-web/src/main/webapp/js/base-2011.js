@@ -2,10 +2,10 @@
  Date: 2014-01-21 
  */
 function login() {
-    return location.href = "/user/login.html";
+    return location.href = "http://localhost:8088/page/login";
 }
 function regist() {
-    return location.href = "/user/register.html";
+    return location.href = "http://localhost:8088/page/register";
 }
 function createCookie(a, b, c, d) {
     var d = d ? d : "/";

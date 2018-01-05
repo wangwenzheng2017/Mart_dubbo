@@ -1,2 +1,7 @@
-C:\Work_File\Study_Space\busMarket_space\taotao-manager\taotao-manager-service\src\main\java\com\taotao\service\impl\ItemServiceImpl.java
-C:\Work_File\Study_Space\busMarket_space\taotao-manager\taotao-manager-service\src\main\java\com\taotao\service\impl\ItemCatServiceImpl.java
+D:\home\mark\code_file\GitHub\busMarket\taotao-manager\taotao-manager-service\src\main\java\com\taotao\service\impl\MyMessageListener.java
+D:\home\mark\code_file\GitHub\busMarket\taotao-manager\taotao-manager-service\src\main\java\com\taotao\redis\client\JedisClientCluster.java
+D:\home\mark\code_file\GitHub\busMarket\taotao-manager\taotao-manager-service\src\main\java\com\taotao\service\impl\ItemServiceImpl.java
+D:\home\mark\code_file\GitHub\busMarket\taotao-manager\taotao-manager-service\src\main\java\com\taotao\redis\client\JedisClient.java
+D:\home\mark\code_file\GitHub\busMarket\taotao-manager\taotao-manager-service\src\main\java\com\taotao\service\impl\ItemCatServiceImpl.java
+D:\home\mark\code_file\GitHub\busMarket\taotao-manager\taotao-manager-service\src\main\java\com\taotao\service\listener\ItemChangeListener.java
+D:\home\mark\code_file\GitHub\busMarket\taotao-manager\taotao-manager-service\src\main\java\com\taotao\redis\client\JedisClientPool.java

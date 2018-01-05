@@ -42,7 +42,7 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	
 	<!-- 接收消息 -->
 	<!-- 配置监听器 -->
-	<bean id="myMessageListener" class="com.taotao.service.impl.MyMessageListener" />
+	<bean id="myMessageListener" class="com.taotao.search.service.listener.MyMessageListener" />
 	<!-- 消息监听容器 -->
 	<bean class="org.springframework.jms.listener.DefaultMessageListenerContainer">
 		<property name="connectionFactory" ref="connectionFactory" />
@@ -50,11 +50,11 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		<property name="messageListener" ref="myMessageListener" />
 	</bean>
 	<!-- 监听商品数据变化 -->
-	<bean id="itemChangeListener" class="com.taotao.service.listener.ItemChangeListener" />
+	<bean id="itemChangeListener" class="com.taotao.search.service.listener.ItemChangeListener" />
 	<bean class="org.springframework.jms.listener.DefaultMessageListenerContainer">
 		<property name="connectionFactory" ref="connectionFactory" />
 		<property name="destination" ref="topicDestination" />
-		<property name="messageListener" ref="ItemChangeListener" />
+		<property name="messageListener" ref="itemChangeListener" />
 	</bean>
 	
 </beans>
